@@ -1,3 +1,5 @@
+import { Queue } from '../queues/queue.js';
+
 class Node {
 	constructor(value) {
 		this.value = value;
@@ -50,16 +52,28 @@ class BinarySearchTree {
 			}
 		}
 	}
+
+	breadthFirstSearch() {
+		const queue = new Queue();
+		queue.enqueue(this.root);
+
+		const visited = [];
+
+		while (!queue.isEmpty()) {
+			const currNode = queue.dequeue();
+			visited.push(currNode.value);
+			if (currNode.left) queue.enqueue(currNode.left);
+			if (currNode.right) queue.enqueue(currNode.right);
+		}
+
+		return visited;
+	}
 }
 
-// test
+// test breadthFirstSearch()
 
-const tree = new BinarySearchTree();
-tree.insert(10);
-tree.insert(5);
-tree.insert(13);
-tree.insert(2);
+const bst = new BinarySearchTree();
+const values = [10, 6, 15, 3, 8, 20];
+values.forEach((value) => bst.insert(value));
 
-console.log(tree.find(2).value);
-console.log(tree.find(10).value);
-console.log(tree.find(333));
+console.log(bst.breadthFirstSearch()); // [ 10, 6, 15, 3, 8, 20 ]

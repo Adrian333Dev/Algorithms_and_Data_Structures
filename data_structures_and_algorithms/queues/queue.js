@@ -5,7 +5,7 @@ class Node {
 	}
 }
 
-class Queue {
+export class Queue {
 	constructor() {
 		this.first = null;
 		this.last = null;
@@ -27,14 +27,22 @@ class Queue {
 
 	dequeue() {
 		if (this.length === 0) return null;
-		else if (this.length === 1) {
+		const dequeuedNode = this.first;
+		if (this.length === 1) {
 			this.first = null;
 			this.last = null;
 		} else {
-			const first = this.first;
-			this.first = this.first.next;
-			this.length--;
-			return first.value;
+			this.first = dequeuedNode.next;
 		}
+		this.length--;
+		return dequeuedNode.value;
+	}
+
+	peek() {
+		return this.first;
+	}
+
+	isEmpty() {
+		return this.length === 0;
 	}
 }

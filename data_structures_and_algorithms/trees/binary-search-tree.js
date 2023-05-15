@@ -68,12 +68,50 @@ class BinarySearchTree {
 
 		return visited;
 	}
+
+	dfsPreOrder() {
+		const visited = [];
+		const curr = this.root;
+
+		const traverse = (node) => {
+			visited.push(node.value);
+			if (node.left) traverse(node.left);
+			if (node.right) traverse(node.right);
+		};
+		traverse(curr);
+		return visited;
+	}
+
+	dfsPostOrder() {
+		const visited = [];
+		const curr = this.root;
+		const traverse = (node) => {
+			if (node.left) traverse(node.left);
+			if (node.right) traverse(node.right);
+			visited.push(node.value);
+		};
+		traverse(curr);
+		return visited;
+	}
+
+	dfsInOrder() {
+		const visited = [];
+		const curr = this.root;
+		const traverse = (node) => {
+			if (node.left) traverse(node.left);
+			visited.push(node.value);
+			if (node.right) traverse(node.right);
+		};
+		traverse(curr);
+		return visited;
+	}
 }
 
-// test breadthFirstSearch()
+// test depthFirstSearchPreOrder
 
 const bst = new BinarySearchTree();
 const values = [10, 6, 15, 3, 8, 20];
 values.forEach((value) => bst.insert(value));
-
-console.log(bst.breadthFirstSearch()); // [ 10, 6, 15, 3, 8, 20 ]
+console.log(bst.dfsPreOrder());
+console.log(bst.dfsPostOrder());
+console.log(bst.dfsInOrder());

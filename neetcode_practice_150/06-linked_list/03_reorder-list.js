@@ -48,7 +48,7 @@ const reorderList = (head) => {
 		nextRight = right.next;
 		right.next = left.next;
 		left.next = right;
-		
+
 		left = left.next.next;
 		temp.next = nextRight;
 		right = nextRight;
@@ -88,5 +88,5 @@ reorderList(head2);
 reorderList(head3);
 
 printList(head1); // 1, 6, 2, 5, 3, 4
-printList(head2); // 1, 5, 2, 4, 3
+printList(head2); // 1, 5, 2, 4, 3 
 printList(head3); // 1, 4, 2, 3

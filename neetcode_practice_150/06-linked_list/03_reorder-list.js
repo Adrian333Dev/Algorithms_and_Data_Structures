@@ -55,15 +55,6 @@ const reorderList = (head) => {
 	}
 };
 
-// const head = new ListNode(
-// 	1,
-// 	new ListNode(
-// 		2,
-// 		new ListNode(3, new ListNode(4, new ListNode(5, new ListNode(6))))
-// 	)
-// );
-// reorderList(head);
-
 const printList = (head) => {
 	let str = 'Print List: ';
 	let temp = head;
@@ -73,15 +64,6 @@ const printList = (head) => {
 	}
 	console.log(str);
 };
-
-// [1, 2, 3, 4, 5, 6]
-// [1, 6, 2, 5, 3, 4]
-
-// [1, 2, 3, 4, 5]
-// [1, 5, 2, 4, 3]
-
-// [1,2,3,4]
-// [1,4,2,3]
 
 const head1 = new ListNode(
 	1,

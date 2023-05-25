@@ -5,7 +5,7 @@ class Node {
 	}
 }
 
-class PriorityQueue {
+export class PriorityQueue {
 	constructor() {
 		this.values = [];
 	}
@@ -89,16 +89,16 @@ class PriorityQueue {
 	}
 }
 
-const priorityQueue = new PriorityQueue();
-priorityQueue.enqueue('common cold', 5); // 0
-priorityQueue.enqueue('gunshot wound', 1); // 1
-priorityQueue.enqueue('high fever', 4); // 2
-priorityQueue.enqueue('broken arm', 2); // 3
-priorityQueue.enqueue('glass in foot', 3); // 4
+// const priorityQueue = new PriorityQueue();
+// priorityQueue.enqueue('common cold', 5); // 0
+// priorityQueue.enqueue('gunshot wound', 1); // 1
+// priorityQueue.enqueue('high fever', 4); // 2
+// priorityQueue.enqueue('broken arm', 2); // 3
+// priorityQueue.enqueue('glass in foot', 3); // 4
 
-console.log(priorityQueue.dequeue()); // gunshot wound
-console.log(priorityQueue.dequeue()); // broken arm
-console.log(priorityQueue.dequeue()); // glass in foot
-console.log(priorityQueue.dequeue()); // high fever
-console.log(priorityQueue.dequeue()); // common cold
-console.log(priorityQueue.dequeue()); // undefined
+// console.log(priorityQueue.dequeue()); // gunshot wound
+// console.log(priorityQueue.dequeue()); // broken arm
+// console.log(priorityQueue.dequeue()); // glass in foot
+// console.log(priorityQueue.dequeue()); // high fever
+// console.log(priorityQueue.dequeue()); // common cold
+// console.log(priorityQueue.dequeue()); // undefined

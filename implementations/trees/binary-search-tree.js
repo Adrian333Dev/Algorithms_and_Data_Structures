@@ -38,6 +38,29 @@ class BinarySearchTree {
 		}
 	}
 
+	removeNode(root, value) {
+		if (!root) return root;
+		if (value > root.value) {
+			root.right = this.remove(root.right, value);
+		} else if (value < root.value) {
+			root.left = this.remove(root.left, value);
+		} else {
+			if (root.left) return root.right;
+			else if (root.right) return root.left;
+			else {
+				const minNode = this.findMinNode(root.right);
+				root.value = minNode.value;
+				root.right = this.remove(root.right, minNode.value);
+			}
+		}
+		return root;
+	}
+
+	remove(value) { 
+		this.root = this.removeNode(this.root, value);
+		return this;
+	}
+
 	find(value) {
 		if (this.root === null) return;
 		let curr = this.root;
@@ -51,6 +74,12 @@ class BinarySearchTree {
 				curr = curr.right;
 			}
 		}
+	}
+
+	findMinNode(node) {
+		let curr = node;
+		while (curr && curr.left) curr = curr.left;
+		return curr;
 	}
 
 	breadthFirstSearch() {
@@ -107,11 +136,12 @@ class BinarySearchTree {
 	}
 }
 
-// test depthFirstSearchPreOrder
+// test remove
 
 const bst = new BinarySearchTree();
-const values = [10, 6, 15, 3, 8, 20];
+const values = [10, 6, 15, 3, 8, 20, 2, 4, 7, 9, 18, 21];
 values.forEach((value) => bst.insert(value));
-console.log(bst.dfsPreOrder());
-console.log(bst.dfsPostOrder());
+console.log(bst.dfsInOrder());
+bst.remove(10);
+bst.remove(15);
 console.log(bst.dfsInOrder());

@@ -31,9 +31,8 @@ export class Queue {
 		if (this.length === 1) {
 			this.first = null;
 			this.last = null;
-		} else {
-			this.first = dequeuedNode.next;
-		}
+		} else this.first = dequeuedNode.next;
+
 		this.length--;
 		return dequeuedNode.value;
 	}

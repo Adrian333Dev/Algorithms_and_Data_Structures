@@ -3,7 +3,7 @@
  * @param {number} h
  * @return {number}
  */
-const minEatingSpeed = (piles, h) => {
+const minEatingSpeed = (piles, h) => { // TODO: finish this
 	let k = 1;
 	let max = piles[0];
 	for (let pile of piles) if (pile > max) max = pile;

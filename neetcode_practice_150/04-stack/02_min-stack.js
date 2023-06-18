@@ -4,26 +4,6 @@ class MinStack {
 		this.minStack = [];
 	}
 
-	push(x) {
-		this.stack.push(x);
-		if (!this.minStack.length) this.minStack.push(x);
-		else if (x <= this.getMin()) this.minStack.push(x);
-	}
-
-	pop() {
-		const last = this.stack.pop();
-		if (last <= this.getMin()) this.minStack.pop();
-		return last;
-	}
-
-	top() {
-		return this.stack[this.stack.length - 1];
-	}
-
-	getMin() {
-		return this.minStack[this.minStack.length - 1];
-	}
-
 	print() {
 		console.log('stack:', this.stack.join(', '));
 		console.log('minStack:', this.minStack.join(', '));

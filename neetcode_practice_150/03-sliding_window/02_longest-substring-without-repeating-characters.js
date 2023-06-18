@@ -3,32 +3,11 @@
  * @return {number}
  */
 const lengthOfLongestSubstring = (s) => {
-	if (s.length < 2) return s.length;
-	let exist = new Set();
-	let max = 0,
-		currMax = 0,
-		l = 0,
-		r = 0;
-
+	let set = new Set();
+	let l = 0, r = 0;
 	while (r < s.length) {
-		max = Math.max(currMax, max);
-		let c = s[r];
-		if (!exist.has(c)) {
-			exist.add(c);
-			currMax++;
-		} else {
-			if (s[r - 1] === c) {
-				currMax = 1;
-				while (l < r) exist.delete(s[l++]);
-			} else {
-				while (s[l] !== c) exist.delete(s[l++]);
-				currMax = r - l;
-			}
-		}
-		r++;
+		
 	}
-	max = Math.max(currMax, max);
-	return max;
 };
 
 // test

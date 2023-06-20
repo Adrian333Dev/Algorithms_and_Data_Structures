@@ -9,10 +9,11 @@ const increasingTriplet = (nums) => {
   for (let i = 0; i < len; i++) {
     const n = nums[i];
     if (n > m) return true;
-    else if (n > l && n < m) m = n;
-    else if (n < l) l = n;
+    if (n > l && n < m) m = n;
+    else if (n < m) l = n;
   }
   return false;
 };
 
-console.log(increasingTriplet([1, 2, 3, 4, 5])); // true
+// console.log(increasingTriplet([1, 2, 3, 4, 5])); // true
+console.log(increasingTriplet([5, 1, 5, 5, 2, 5, 4])); // true

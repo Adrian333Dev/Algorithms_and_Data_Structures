@@ -1,6 +1,6 @@
 export class MinBinaryHeap {
 	constructor(capacity = 100) {
-		this.#capacity = capacity + 1;
+		this.capacity = capacity + 1;
 		this.size = 0;
 		this.values = [0];
 	}
@@ -20,27 +20,34 @@ export class MinBinaryHeap {
 		return min;
 	}
 
+	heapify(arr) {
+		this.values = [0, ...arr];
+		this.size = arr.length;
+		for (let i = Math.floor(this.size / 2); i > 0; i--) this.percolateDown(i);
+		return this;
+	}
+
 	getMin() {
 		return this.values[1];
 	}
 
-	#parent(i) {
+	parent(i) {
 		return Math.floor(i / 2);
 	}
 
-	#left(i) {
+	left(i) {
 		return 2 * i;
 	}
 
-	#right(i) {
+	right(i) {
 		return 2 * i + 1;
 	}
 
-	#swap(i, j) {
+	swap(i, j) {
 		[this.values[i], this.values[j]] = [this.values[j], this.values[i]];
 	}
 
-	#percolateUp() {
+	percolateUp() {
 		let arr = this.values,
 			i = arr.length - 1,
 			p = this.parent(i);
@@ -48,7 +55,7 @@ export class MinBinaryHeap {
 			this.swap(i, p), (i = p), (p = this.parent(i));
 	}
 
-	#percolateDown() {
+	percolateDown() {
 		let arr = this.values,
 			i = 1,
 			l = this.left(i),

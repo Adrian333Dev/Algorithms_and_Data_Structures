@@ -10,11 +10,11 @@ class MyHashSet {
 	}
 
 	add(key) {
-		let idx = this._hash(key),
-			node = this.set[idx];
+		let idx = this._hash(key), node = this.set[idx];
 		if (!node) this.set[idx] = new Node(key);
 		else {
-			while (node.next) node = node.next;
+			while (node.next && node.value !== key) node = node.next;
+			if (node.value === key) return;
 			node.next = new Node(key);
 		}
 		this.size++;
@@ -22,9 +22,7 @@ class MyHashSet {
 	}
 
 	remove(key) {
-		let idx = this._hash(key),
-			node = this.set[idx];
-		console.log(idx, node);
+		let idx = this._hash(key), node = this.set[idx];
 		if (!node) return;
 		else if (node.value === key) this.set[idx] = node.next;
 		else {
@@ -32,14 +30,13 @@ class MyHashSet {
 			if (!node.next) return;
 			node.next = node.next.next;
 		}
-		console.log(this.set[idx]);
 		this.size--;
 		if (this.size < this.max * 0.2) this._rehash();
 	}
 
 	contains(key) {
 		let node = this.set[this._hash(key)];
-		while (node && node.value !== key) node = node.next;
+		while (node && node.value !== key) node = node.next; 
 		return !!node;
 	}
 
@@ -58,9 +55,7 @@ class MyHashSet {
 	}
 
 	_nextPrime() {
-		const min = this.max * 1.5,
-			max = this.max * 3;
-		const sieve = new Array(max + 1).fill(true);
+		const min = this.max * 1.5, max = this.max * 3, sieve = new Array(max + 1).fill(true);
 		sieve[0] = sieve[1] = false;
 		for (let i = 2; i <= Math.sqrt(max); i++)
 			if (sieve[i]) for (let j = i * i; j <= max; j += i) sieve[j] = false;
@@ -69,12 +64,10 @@ class MyHashSet {
 	}
 
 	_rehash() {
-		this.max *= 2;
+		this.max *= this._nextPrime();
 		const oldSet = this.set;
 		this.set = new Array(this.max).fill(null);
-		oldSet.forEach((node) => {
-			while (node) this.add(node.value), (node = node.next);
-		});
+		for (let node of oldSet) while (node) this.add(node.value), (node = node.next);
 	}
 }
 

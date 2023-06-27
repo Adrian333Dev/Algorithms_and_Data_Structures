@@ -3,12 +3,8 @@
  * @return {Function}
  */
 const once = (fn) => {
-	let called = false;
-	return function (...args) {
-		if (called) return;
-		called = true;
-		return fn(...args);
-	};
+  let called = false;
+	return function (...args) {};
 };
 
 /**

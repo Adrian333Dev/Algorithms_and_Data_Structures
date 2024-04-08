@@ -1,0 +1,20 @@
+REVERSE LINKED LIST
+
+1 -> 2 -> 3 -> 4 -> 5
+
+
+
+1 -> 2 -> 3 -> 4 -> 5
+
+LOOP 1
+
+Prev: NULL
+Head: 1
+Next: 2 -> 3 -> 4 -> 5
+
+Saved Next: 2 -> 3 -> 4 -> 5
+Head.Next Prev(Null)
+
+LOOp 2
+
+Prev: 1 -> 

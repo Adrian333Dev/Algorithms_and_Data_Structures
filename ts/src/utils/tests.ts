@@ -1,12 +1,12 @@
 export interface ITestCase {
   input: any;
   expected: any;
-  params?: any;
+  // params?: any;
 }
 
 export const runTests = (fn: Function, testCases: ITestCase[]) => {
-  testCases.forEach(({ input, expected, params }, i) => {
-    const result = JSON.stringify(fn(input, params));
+  testCases.forEach(({ input, expected }, i) => {
+    const result = JSON.stringify(fn(...input));
     const expectedStr = JSON.stringify(expected);
     if (result !== expectedStr) {
       throw new Error(

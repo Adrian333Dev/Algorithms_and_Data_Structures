@@ -1,21 +1,20 @@
-import { DLLNode } from '../utils/nodes';
-
-type Node = DLLNode<number>;
+export class Node {
+  constructor(
+    public value: number,
+    public prev: Node | null = null,
+    public next: Node | null = null
+  ) {}
+}
 
 class LRUCache {
   private cache = new Map<number, Node>();
-  private head: Node | null = null;
-  private tail: Node | null = null;
   private size = 0;
 
   constructor(private capacity: number) {}
 
   get(key: number): number {
-    const node = this.cache.get(key);
-    if (node) {
-      return node.value;
-    }
-    return -1;
+    const value = this.cache.get(key);
+    if (value === undefined) return -1;
   }
 
   put(key: number, value: number): void {}

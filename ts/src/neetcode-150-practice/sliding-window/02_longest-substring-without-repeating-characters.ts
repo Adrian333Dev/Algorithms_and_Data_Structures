@@ -1,4 +1,4 @@
-import { ITestCase, runTests } from './../utils/tests';
+import { ITestCase, runTests } from '../../utils/tests';
 
 const lengthOfLongestSubstring = (s: string): number => {
   let max = 0, i = 0, charsSet = new Set<string>();

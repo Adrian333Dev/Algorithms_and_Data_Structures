@@ -48,3 +48,49 @@ function maxPathSum(root: TreeNode | null): number {
       )
     : 0;
 }
+
+// function insertIntoBST(
+//   root: TreeNode | null,
+//   val: number,
+//   parent?: TreeNode,
+//   dir?: -1 | 1
+// ): TreeNode | null {
+//   if (!root)
+//     if (parent) {
+//       dir === -1
+//         ? (parent.left = new TreeNode(val))
+//         : (parent.right = new TreeNode(val));
+//       return parent;
+//     } else return new TreeNode(val);
+//   else
+//     val < root.val
+//       ? insertIntoBST(root.left, val, root, -1)
+//       : insertIntoBST(root.right, val, root, 1);
+//   return parent;
+// }
+
+function insertIntoBST(
+  root: TreeNode | null,
+  val: number,
+  parent?: TreeNode,
+  dir?: -1 | 1
+): TreeNode | null {
+  if (!root) {
+    if (parent)
+      dir === -1
+        ? (parent.left = new TreeNode(val))
+        : (parent.right = new TreeNode(val));
+  } else
+    val < root.val
+      ? insertIntoBST(root.left, val, root, -1)
+      : insertIntoBST(root.right, val, root, 1);
+  return parent ? parent : new TreeNode(val);
+}
+
+function findMaxK(nums: number[]): number {
+  if (!nums.length) return -1;
+  const set = new Set<number>(nums);
+  let max = -1;
+  for (let n of nums) if (n > 0 && set.has(-n)) max = Math.max(max, n);
+  return max;
+}

@@ -16,3 +16,9 @@ export class TreeNode {
     this.right = right === undefined ? null : right;
   }
 }
+
+export class TireNode {
+  public children: { [char: string]: TireNode } = {};
+  public isEndOfWord = false;
+  constructor() {}
+}

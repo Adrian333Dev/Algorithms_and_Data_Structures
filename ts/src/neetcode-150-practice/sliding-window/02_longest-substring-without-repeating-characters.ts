@@ -1,16 +1,17 @@
 import { ITestCase, runTests } from '../../utils/tests';
 
 const lengthOfLongestSubstring = (s: string): number => {
-  let max = 0, i = 0, charsSet = new Set<string>();
-  for (let j = 0; j < s.length; j++) {
-    const char = s.charAt(j);
-    if (charsSet.has(char)) {
-      max = Math.max(max, charsSet.size);
-      while (charsSet.has(char) && i < j) charsSet.delete(s.charAt(i++));
-      charsSet.add(char);
-    } else charsSet.add(char);
+  let l = 0,
+    wCount = new Set<string>(),
+    maxLen = 0;
+  for (const c of s) {
+    if (wCount.has(c)) {
+      maxLen = Math.max(maxLen, wCount.size);
+      while (wCount.has(c)) wCount.delete(s.charAt(l++));
+    }
+    wCount.add(c);
   }
-  return Math.max(charsSet.size, max);
+  return Math.max(wCount.size, maxLen);
 };
 
 // TEST CASES

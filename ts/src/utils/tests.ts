@@ -1,3 +1,5 @@
+import { ListNode } from "./nodes";
+
 export interface ITestCase {
   input: any;
   expected: any;
@@ -16,4 +18,21 @@ export const runTests = (fn: Function, testCases: ITestCase[]) => {
       );
     } else console.log(`Test ${i + 1} passed ✅`);
   });
+};
+
+export const logLinkedList = (head: ListNode | null): void => {
+  if (!head) {
+    console.log('Empty list');
+    return;
+  }
+
+  const nodeValues: string[] = [];
+  let currentNode: ListNode | null = head;
+
+  while (currentNode !== null) {
+    nodeValues.push(currentNode.val.toString());
+    currentNode = currentNode.next;
+  }
+
+  console.log(nodeValues.join(' -> '));
 };
